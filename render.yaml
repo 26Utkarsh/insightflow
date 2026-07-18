@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: insightflow
+    env: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash
+      - key: CEREBRAS_API_KEY
+        sync: false
+        description: Optional fallback AI API key (recommended for reliability)
+      - key: CEREBRAS_MODEL
+        value: llama-3.3-70b
+      - key: PORT
+        value: 3000
