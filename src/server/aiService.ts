@@ -3,7 +3,7 @@ import { pathToFileURL } from 'node:url';
 
 // Use getters so env vars are read at call-time, not module-load-time (dotenv may not have run yet)
 export function getGeminiModel(): string { return process.env.GEMINI_MODEL || 'gemini-2.0-flash'; }
-export function getCerebrasModel(): string { return process.env.CEREBRAS_MODEL || 'llama-3.3-70b'; }
+export function getCerebrasModel(): string { return process.env.CEREBRAS_MODEL || 'gpt-oss-120b'; }
 
 type AiError = { code: string; message: string };
 type AiResult<T> = { ok: boolean; model: string; data: T; error?: AiError };
