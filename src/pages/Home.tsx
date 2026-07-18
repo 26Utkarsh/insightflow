@@ -208,31 +208,14 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
-            className="max-w-5xl mx-auto w-full relative z-10 grid lg:grid-cols-[1fr_420px] gap-12 flex-1 items-stretch"
+            className="max-w-5xl mx-auto w-full relative z-10 grid lg:grid-cols-[1.5fr_1fr] gap-12 flex-1 items-stretch"
           >
-            {/* Subtle Botanical Motif Backgrounds (Negative Space) */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
-              {/* Top-Right behind Analysis Focus Panel */}
-              <div className="absolute -top-16 -right-16 w-[480px] h-[580px] opacity-[0.05] text-accent-secondary">
-                <svg viewBox="0 0 400 500" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                  <path d="M380,0 C330,120 240,240 100,320 M240,150 C180,130 140,150 120,180 C100,210 130,230 240,150 Z M170,220 C120,200 80,220 70,250 C60,280 90,300 170,220 Z" />
-                  <path d="M280,90 C220,70 180,90 160,120 C140,150 170,170 280,90 Z" />
-                </svg>
-              </div>
-              {/* Bottom-Left in empty space */}
-              <div className="absolute bottom-[-80px] left-[-60px] w-[380px] h-[480px] opacity-[0.04] text-accent-secondary">
-                <svg viewBox="0 0 300 400" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                  <path d="M0,400 C50,280 120,180 250,120 M120,230 C160,250 190,230 200,200 C210,170 180,150 120,230 Z M180,170 C220,190 250,170 260,140 C270,110 240,90 180,170 Z" />
-                </svg>
-              </div>
-            </div>
-
             {/* Left Column: Dropzone + Explainer */}
             <div className="flex flex-col justify-center py-4 relative z-10">
               <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-text-muted/70 mb-5 block">
                 InsightFlow Ingest Terminal
               </span>
-              <h1 className="text-4xl md:text-[46px] font-medium font-serif-display leading-[1.1] text-text-primary mb-2 tracking-[-0.025em]">
+              <h1 className="text-4xl md:text-[clamp(28px,5.8vw,54px)] font-bold font-serif-display leading-[1.05] text-text-primary mb-2 tracking-[-0.03em]">
                 Upload business data. <br />
                 Review insights <span className="text-accent-secondary italic underline decoration-accent-secondary/35 decoration-2 underline-offset-6">instantly</span>.
               </h1>

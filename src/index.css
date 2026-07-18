@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter Tight", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Satoshi", "Inter Tight", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-bg-primary: var(--bg-primary);
@@ -106,6 +105,7 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.012'/%3E%3C/svg%3E");
   color: var(--text-primary);
   font-family: var(--font-sans);
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -113,8 +113,9 @@ body {
 
 @layer base {
   h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans); line-height: 1.2; letter-spacing: -0.015em; font-weight: 700; }
-  p { line-height: 1.6; font-size: 0.9375rem; }
+  p { line-height: 1.6; font-size: 0.9375rem; font-weight: 500; }
   button, a, select, input, textarea {
+    font-weight: 600;
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 120ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   *:focus-visible { outline: 2px solid var(--accent-secondary); outline-offset: 3px; border-radius: 2px; }
@@ -178,7 +179,7 @@ body {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
 }
 
-.editorial-label { color: var(--text-muted); font-family: var(--font-sans); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
+.editorial-label { color: var(--text-muted); font-family: var(--font-sans); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
 .metric-line { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px solid var(--border-primary); }
 .metric-line:last-child { border-bottom: 0; }
 .field-control { width: 100%; min-height: 2.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-primary); background: var(--bg-secondary); color: var(--text-primary); padding: 0.5rem 0.75rem; font-size: 0.875rem; }
@@ -186,7 +187,7 @@ body {
 
 .primary-action {
   display: inline-flex;
-  min-height: 2.35rem;
+  min-height: 2.75rem;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -213,7 +214,7 @@ body {
 
 .quiet-action {
   display: inline-flex;
-  min-height: 2.25rem;
+  min-height: 2.75rem;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;

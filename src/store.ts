@@ -35,7 +35,7 @@ export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
       settings: {
-        theme: 'dark',
+        theme: 'light',
         animationsEnabled: true,
         aiModel: 'llama-3.3-70b',
         defaultProfile: 'Business Intelligence',

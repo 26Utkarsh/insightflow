@@ -82,21 +82,36 @@ export default function Layout() {
   };
 
   return (
-    <div className="flex h-screen w-full bg-bg-primary text-text-primary overflow-hidden">
-      {/* Sidebar for Desktop */}
-      <aside 
-        className={`hidden md:flex flex-col h-full bg-gradient-to-b from-bg-secondary/95 to-bg-primary/95 border-r border-border-primary/50 transition-all duration-300 relative z-40 overflow-hidden
-          ${sidebarCollapsed ? 'w-16' : 'w-64'}`}
-      >
-        {/* Subtle Botanical Motif for Sidebar */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.025] z-0 select-none">
-          <svg viewBox="0 0 200 400" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -bottom-12 -left-12 w-48 h-96 text-accent-secondary">
-            <path d="M50,400 C60,300 100,200 180,100" />
-            <path d="M120,250 C100,220 80,210 50,210 C30,210 20,225 30,240 C40,250 80,250 120,250 Z" />
-            <path d="M150,170 C130,150 110,140 80,140 C60,140 50,155 60,170 C70,180 110,180 150,170 Z" />
-          </svg>
-        </div>
+    <div className="flex h-screen w-full bg-bg-primary text-text-primary overflow-hidden relative animate-fade-in">
+      {/* 5 scattered botanical leaf inline SVG silhouettes (12% opacity, pointer-events-none) */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none opacity-[0.12] text-[#6366F1] dark:text-[#818CF8]" aria-hidden="true">
+        {/* Cluster 1: Top Right */}
+        <svg className="absolute -top-16 -right-16 w-[420px] h-[520px]" viewBox="0 0 400 500" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M380,0 C330,120 240,240 100,320 M240,150 C180,130 140,150 120,180 C100,210 130,230 240,150 Z M170,220 C120,200 80,220 70,250 C60,280 90,300 170,220 Z M280,90 C220,70 180,90 160,120 C140,150 170,170 280,90 Z" />
+        </svg>
+        {/* Cluster 2: Bottom Left near sidebar footer */}
+        <svg className="absolute -bottom-20 -left-20 w-[360px] h-[460px]" viewBox="0 0 300 400" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M0,400 C50,280 120,180 250,120 M120,230 C160,250 190,230 200,200 C210,170 180,150 120,230 Z M180,170 C220,190 250,170 260,140 C270,110 240,90 180,170 Z" />
+        </svg>
+        {/* Cluster 3: Center Bottom */}
+        <svg className="absolute bottom-4 left-[35%] w-[280px] h-[340px] opacity-75" viewBox="0 0 200 300" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M100,300 C110,210 140,140 190,70 M130,190 C100,180 80,190 70,210 C60,230 80,240 130,190 Z M160,130 C130,120 110,130 100,150 C90,170 110,180 160,130 Z" />
+        </svg>
+        {/* Cluster 4: Top Left */}
+        <svg className="absolute -top-20 left-12 w-[260px] h-[320px] opacity-60" viewBox="0 0 200 300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M50,0 C70,90 110,160 180,220 M100,100 C80,85 65,95 60,110 C55,125 70,135 100,100 Z M130,150 C110,135 95,145 90,160 C85,175 100,185 130,150 Z" />
+        </svg>
+        {/* Cluster 5: Middle Right */}
+        <svg className="absolute top-[40%] -right-12 w-[240px] h-[300px] opacity-50" viewBox="0 0 200 300" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M200,150 C150,180 100,190 50,190 M110,170 C90,150 75,160 70,175 C65,190 80,200 110,170 Z M140,160 C120,140 105,150 100,165 C95,180 110,190 140,160 Z" />
+        </svg>
+      </div>
 
+      {/* Sidebar for Desktop & Tablet */}
+      <aside 
+        className={`hidden sm:flex flex-col h-full bg-gradient-to-b from-bg-secondary/70 to-bg-primary/70 backdrop-blur-md border-r border-border-primary/50 transition-all duration-300 relative z-30 overflow-hidden
+          ${sidebarCollapsed ? 'sm:w-16' : 'lg:w-64 sm:w-16'}`}
+      >
         {/* Brand Header */}
         <div className="h-14 flex items-center px-4 justify-between border-b border-border-primary/50">
           <Link to="/" className="flex items-center gap-2.5 group overflow-hidden pl-1">
@@ -104,7 +119,7 @@ export default function Layout() {
               <LogoIcon className="w-4.5 h-4.5" />
             </div>
             {!sidebarCollapsed && (
-              <span className="font-extrabold text-xs uppercase tracking-[0.2em] font-display text-text-primary">
+              <span className="font-extrabold text-xs uppercase tracking-[0.2em] font-display text-text-primary hidden lg:inline-block">
                 InsightFlow
               </span>
             )}
@@ -121,7 +136,7 @@ export default function Layout() {
             <div className="flex items-center gap-2.5 min-w-0">
               <Database size={14} className="text-accent-secondary shrink-0" />
               {!sidebarCollapsed && (
-                <div className="min-w-0">
+                <div className="min-w-0 hidden lg:block">
                   <div className="text-[9px] uppercase font-bold tracking-wider text-text-muted">Active Catalog</div>
                   <div className="text-xs font-semibold text-text-primary truncate">
                     {activeDataset ? activeDataset.name : 'No dataset active'}
@@ -130,7 +145,7 @@ export default function Layout() {
               )}
             </div>
             {!sidebarCollapsed && (
-              <ChevronDown size={13} className={`text-text-muted/50 transition-transform duration-200 ${workspaceDropdownOpen ? 'rotate-180 text-text-secondary' : ''}`} />
+              <ChevronDown size={13} className={`text-text-muted/50 transition-transform duration-200 hidden lg:block ${workspaceDropdownOpen ? 'rotate-180 text-text-secondary' : ''}`} />
             )}
           </button>
 
@@ -195,7 +210,7 @@ export default function Layout() {
                   <span className={`shrink-0 relative z-10 transition-colors duration-150 ${isActive ? 'text-text-primary' : 'text-text-muted/70 group-hover:text-text-secondary'}`}>
                     {link.icon}
                   </span>
-                  {!sidebarCollapsed && <span className="relative z-10 transition-colors duration-150">{link.name}</span>}
+                  {!sidebarCollapsed && <span className="relative z-10 transition-colors duration-150 hidden lg:inline-block">{link.name}</span>}
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
@@ -226,10 +241,10 @@ export default function Layout() {
       </aside>
 
       {/* Main Content Wrapper (covers both desktop and mobile, single outlet) */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative z-10">
         
         {/* Mobile Header Bar */}
-        <header className="md:hidden h-14 w-full bg-bg-secondary border-b border-border-primary px-4 flex items-center justify-between shrink-0">
+        <header className="sm:hidden h-14 w-full bg-bg-secondary/70 backdrop-blur-md border-b border-border-primary px-4 flex items-center justify-between shrink-0 z-40 relative">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-7.5 h-7.5 rounded-lg bg-gradient-to-tr from-accent-primary to-accent-secondary flex items-center justify-center shrink-0 shadow-sm text-white">
               <LogoIcon className="w-4 h-4" />
@@ -255,7 +270,7 @@ export default function Layout() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.5 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/60 z-40 md:hidden"
+                className="fixed inset-0 bg-black/60 z-40 sm:hidden"
                 onClick={() => setMobileMenuOpen(false)}
               />
               <motion.div
@@ -263,7 +278,7 @@ export default function Layout() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'tween', duration: 0.2 }}
-                className="fixed top-0 bottom-0 left-0 w-72 bg-bg-secondary border-r border-border-primary z-50 p-4 flex flex-col md:hidden"
+                className="fixed top-0 bottom-0 left-0 w-72 bg-bg-secondary border-r border-border-primary z-50 p-4 flex flex-col sm:hidden"
               >
                 <div className="flex items-center justify-between pb-6 border-b border-border-primary/50">
                   <div className="flex items-center gap-2">
@@ -323,7 +338,7 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-hidden relative">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden relative custom-scrollbar z-10">
           <Outlet />
         </main>
       </div>
