@@ -85,9 +85,18 @@ export default function Layout() {
     <div className="flex h-screen w-full bg-bg-primary text-text-primary overflow-hidden">
       {/* Sidebar for Desktop */}
       <aside 
-        className={`hidden md:flex flex-col h-full bg-gradient-to-b from-bg-secondary/95 to-bg-primary/95 border-r border-border-primary/50 transition-all duration-300 relative z-40
+        className={`hidden md:flex flex-col h-full bg-gradient-to-b from-bg-secondary/95 to-bg-primary/95 border-r border-border-primary/50 transition-all duration-300 relative z-40 overflow-hidden
           ${sidebarCollapsed ? 'w-16' : 'w-64'}`}
       >
+        {/* Subtle Botanical Motif for Sidebar */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.025] z-0 select-none">
+          <svg viewBox="0 0 200 400" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="absolute -bottom-12 -left-12 w-48 h-96 text-accent-secondary">
+            <path d="M50,400 C60,300 100,200 180,100" />
+            <path d="M120,250 C100,220 80,210 50,210 C30,210 20,225 30,240 C40,250 80,250 120,250 Z" />
+            <path d="M150,170 C130,150 110,140 80,140 C60,140 50,155 60,170 C70,180 110,180 150,170 Z" />
+          </svg>
+        </div>
+
         {/* Brand Header */}
         <div className="h-14 flex items-center px-4 justify-between border-b border-border-primary/50">
           <Link to="/" className="flex items-center gap-2.5 group overflow-hidden pl-1">
@@ -191,7 +200,7 @@ export default function Layout() {
                     <motion.div
                       layoutId="activePill"
                       className="absolute inset-0 bg-accent-primary/[0.06] border border-accent-primary/10 rounded-xl z-0"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      transition={{ type: 'tween', ease: [0.4, 0, 0.2, 1], duration: 0.18 }}
                     />
                   )}
                 </Link>

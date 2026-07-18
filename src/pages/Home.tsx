@@ -204,22 +204,39 @@ export default function Home() {
         {step === 'upload' && (
           <motion.div
             key="upload-step"
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="max-w-5xl mx-auto w-full relative z-10 grid lg:grid-cols-[1fr_400px] gap-12 flex-1 items-stretch"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
+            className="max-w-5xl mx-auto w-full relative z-10 grid lg:grid-cols-[1fr_420px] gap-12 flex-1 items-stretch"
           >
+            {/* Subtle Botanical Motif Backgrounds (Negative Space) */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
+              {/* Top-Right behind Analysis Focus Panel */}
+              <div className="absolute -top-16 -right-16 w-[480px] h-[580px] opacity-[0.05] text-accent-secondary">
+                <svg viewBox="0 0 400 500" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+                  <path d="M380,0 C330,120 240,240 100,320 M240,150 C180,130 140,150 120,180 C100,210 130,230 240,150 Z M170,220 C120,200 80,220 70,250 C60,280 90,300 170,220 Z" />
+                  <path d="M280,90 C220,70 180,90 160,120 C140,150 170,170 280,90 Z" />
+                </svg>
+              </div>
+              {/* Bottom-Left in empty space */}
+              <div className="absolute bottom-[-80px] left-[-60px] w-[380px] h-[480px] opacity-[0.04] text-accent-secondary">
+                <svg viewBox="0 0 300 400" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+                  <path d="M0,400 C50,280 120,180 250,120 M120,230 C160,250 190,230 200,200 C210,170 180,150 120,230 Z M180,170 C220,190 250,170 260,140 C270,110 240,90 180,170 Z" />
+                </svg>
+              </div>
+            </div>
+
             {/* Left Column: Dropzone + Explainer */}
-            <div className="flex flex-col justify-center py-4">
+            <div className="flex flex-col justify-center py-4 relative z-10">
               <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-text-muted/70 mb-5 block">
                 InsightFlow Ingest Terminal
               </span>
-              <h1 className="text-4xl md:text-[46px] font-medium font-serif-display leading-[1.1] text-text-primary mb-6 tracking-[-0.025em]">
+              <h1 className="text-4xl md:text-[46px] font-medium font-serif-display leading-[1.1] text-text-primary mb-2 tracking-[-0.025em]">
                 Upload business data. <br />
                 Review insights <span className="text-accent-secondary italic underline decoration-accent-secondary/35 decoration-2 underline-offset-6">instantly</span>.
               </h1>
-              <p className="text-sm text-text-secondary max-w-lg leading-relaxed mb-8">
+              <p className="text-[17px] text-text-secondary/90 leading-[1.65] max-w-[42rem] mt-7 mb-8">
                 InsightFlow automatically profiles, cleans, and structures your records, generating audit ready compliance ledgers and interactive dashboards in seconds.
               </p>
 
@@ -270,15 +287,15 @@ export default function Home() {
             </div>
 
             {/* Right Column: Profile Selector */}
-            <div className="flex flex-col justify-center">
-              <div className="surface-panel p-6.5 rounded-2xl relative overflow-hidden bevel-border bg-bg-surface/30 backdrop-blur-sm">
+            <div className="flex flex-col justify-center relative z-10">
+              <div className="surface-panel p-9 rounded-2xl relative overflow-hidden bevel-border bg-bg-surface/30 backdrop-blur-sm shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
                 <div className="absolute top-0 right-0 w-36 h-36 bg-accent-primary/5 rounded-full blur-3xl pointer-events-none" />
                 <span className="editorial-label mb-2 block tracking-[0.22em] text-accent-secondary font-bold text-[10px]">Analysis Focus</span>
-                <p className="text-xs text-text-muted mb-6 leading-relaxed">
+                <p className="text-[15px] text-text-secondary/90 mb-6 leading-[1.6] font-medium">
                   Choose a target domain framework. InsightFlow will adjust its metric checks and AI observations to align with your choice.
                 </p>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {PROFILES.map(p => {
                     const active = selectedProfile === p.id;
                     return (
@@ -286,22 +303,22 @@ export default function Home() {
                         key={p.id}
                         onClick={() => { setSelectedProfile(p.id); updateSettings({ defaultProfile: p.id }); }}
                         aria-pressed={active}
-                        className={`w-full flex items-start gap-3.5 p-3 rounded-xl text-left transition-all border duration-200 cursor-pointer group/item
+                        className={`w-full flex items-start gap-4 px-4.5 py-4.5 rounded-xl text-left transition-all border duration-200 cursor-pointer group/item
                           ${active 
                             ? 'bg-bg-surface border-accent-secondary/40 shadow-[0_4px_20px_rgba(79,70,229,0.08),0_0_0_1px_rgba(79,70,229,0.1)]' 
                             : 'bg-transparent border-transparent hover:bg-bg-surface hover:border-border-primary/80'}`}
                       >
-                        <span className={`shrink-0 p-1.5 rounded-lg bg-gradient-to-b from-bg-surface to-bg-secondary border border-border-primary/75 mt-0.5 transition-all duration-200 shadow-[0_1px_2.5px_rgba(0,0,0,0.02)]
+                        <span className={`shrink-0 w-11 h-11 flex items-center justify-center rounded-xl bg-gradient-to-b from-bg-surface to-bg-secondary border border-border-primary/75 mt-0.5 transition-all duration-200 shadow-[0_1px_2.5px_rgba(0,0,0,0.02)]
                           ${active ? 'text-accent-secondary border-accent-secondary/25 bg-gradient-to-b from-accent-secondary/15 to-accent-secondary/5 scale-105' : 'text-text-muted group-hover/item:text-text-primary'}`}>
-                          {p.icon}
+                          {React.cloneElement(p.icon as React.ReactElement, { size: 18 })}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <div className={`text-xs font-bold tracking-tight transition-colors duration-150 ${active ? 'text-text-primary' : 'text-text-secondary group-hover/item:text-text-primary'}`}>{p.id}</div>
-                          <div className="text-[10px] text-text-muted mt-1.5 leading-relaxed font-medium">{p.desc}</div>
+                          <div className={`text-sm font-semibold tracking-tight transition-colors duration-150 ${active ? 'text-text-primary' : 'text-text-secondary group-hover/item:text-text-primary'}`}>{p.id}</div>
+                          <div className={`text-[13.5px] mt-1.5 leading-[1.5] transition-colors duration-150 ${active ? 'text-text-secondary/85' : 'text-text-muted group-hover/item:text-text-secondary/90'}`}>{p.desc}</div>
                         </div>
                         {active && (
-                          <div className="w-4.5 h-4.5 rounded-full bg-accent-secondary text-white shadow-[0_1.5px_3.5px_rgba(79,70,229,0.3)] flex items-center justify-center shrink-0 mt-0.5">
-                            <Check size={10} className="stroke-[3]" />
+                          <div className="w-5 h-5 rounded-full bg-accent-secondary text-white shadow-[0_1.5px_3.5px_rgba(79,70,229,0.3)] flex items-center justify-center shrink-0 mt-0.5">
+                            <Check size={11} className="stroke-[3]" />
                           </div>
                         )}
                       </button>
