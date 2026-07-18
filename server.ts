@@ -4,7 +4,7 @@ dotenv.config();
 import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
-import { getCerebrasModel, getGeminiModel, localDetection, localReport, runAiJson, runAiText } from './src/server/aiService';
+import { getCerebrasModel, getGeminiModel, getGroqModel, localDetection, localReport, runAiJson, runAiText } from './src/server/aiService';
 
 async function startServer() {
   const app = express();
@@ -14,11 +14,13 @@ async function startServer() {
 
   app.get('/api/ai/status', (_req, res) => {
     res.json({
-      primaryModel: getCerebrasModel(),
-      fallbackModel: getGeminiModel(),
+      primaryModel:      getCerebrasModel(),
+      fallback1Model:    getGroqModel(),
+      fallback2Model:    getGeminiModel(),
       cerebrasConfigured: Boolean(process.env.CEREBRAS_API_KEY),
-      geminiConfigured: Boolean(process.env.GEMINI_API_KEY),
-      configured: Boolean(process.env.CEREBRAS_API_KEY || process.env.GEMINI_API_KEY)
+      groqConfigured:     Boolean(process.env.GROQ_API_KEY),
+      geminiConfigured:   Boolean(process.env.GEMINI_API_KEY),
+      configured: Boolean(process.env.CEREBRAS_API_KEY || process.env.GROQ_API_KEY || process.env.GEMINI_API_KEY)
     });
   });
 

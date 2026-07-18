@@ -2,14 +2,16 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 // Use getters so env vars are read at call-time, not module-load-time (dotenv may not have run yet)
-export function getGeminiModel(): string { return process.env.GEMINI_MODEL || 'gemini-2.0-flash'; }
-export function getCerebrasModel(): string { return process.env.CEREBRAS_MODEL || 'gpt-oss-120b'; }
+export function getGeminiModel(): string   { return process.env.GEMINI_MODEL   || 'gemini-2.0-flash'; }
+export function getCerebrasModel(): string  { return process.env.CEREBRAS_MODEL  || 'gpt-oss-120b'; }
+export function getGroqModel(): string      { return process.env.GROQ_MODEL      || 'llama-3.3-70b-versatile'; }
 
 type AiError = { code: string; message: string };
 type AiResult<T> = { ok: boolean; model: string; data: T; error?: AiError };
 
 let aiClientPromise: Promise<any> | null = null;
 let cerebrasClientPromise: Promise<any> | null = null;
+let groqClientPromise: Promise<any> | null = null;
 
 async function getAiClient() {
   if (!process.env.GEMINI_API_KEY) return null;
@@ -19,6 +21,19 @@ async function getAiClient() {
       .catch(err => { aiClientPromise = null; throw err; });
   }
   return aiClientPromise;
+}
+
+async function getGroqClient() {
+  if (!process.env.GROQ_API_KEY) return null;
+  if (!groqClientPromise) {
+    groqClientPromise = import('openai')
+      .then(({ default: OpenAI }) => new OpenAI({
+        apiKey: process.env.GROQ_API_KEY,
+        baseURL: 'https://api.groq.com/openai/v1'
+      }))
+      .catch(err => { groqClientPromise = null; throw err; });
+  }
+  return groqClientPromise;
 }
 
 async function getCerebrasClient() {
@@ -157,6 +172,27 @@ async function callCerebras(prompt: string, systemInstruction: string, timeoutMs
   return msg?.content || msg?.reasoning || '';
 }
 
+async function callGroq(prompt: string, systemInstruction: string, timeoutMs = 15000): Promise<string> {
+  const client = await getGroqClient();
+  if (!client) throw new Error('missing GROQ_API_KEY');
+
+  const response: any = await withTimeout(
+    client.chat.completions.create({
+      model: getGroqModel(),
+      messages: [
+        { role: 'system', content: systemInstruction },
+        { role: 'user', content: prompt }
+      ],
+      temperature: 0.35,
+      max_tokens: 4096,
+    }),
+    timeoutMs,
+    'Groq'
+  );
+
+  return response.choices[0]?.message?.content || '';
+}
+
 export function localDetection(req: any) {
   const columns = (req.columns || []).map((column: string) => column.toLowerCase());
   const joined = columns.join(' ');
@@ -261,7 +297,18 @@ export async function runAiJson(req: any, fallback: any): Promise<AiResult<any>>
     }
   }
 
-  // Fall back to Gemini
+  // Fall back to Groq (2nd tier — 14,400 free req/day, llama-3.3-70b-versatile)
+  if (process.env.GROQ_API_KEY) {
+    try {
+      const text = await runWithRetry(() => callGroq(jsonPrompt, jsonSystem), 'Groq');
+      return { ok: true, model: getGroqModel(), data: extractJson(text) };
+    } catch (error) {
+      const groqError = normalizeError(error, 'Groq');
+      console.log(`Groq JSON failed completely (${groqError.code}), trying Gemini...`);
+    }
+  }
+
+  // Last resort: Gemini
   if (process.env.GEMINI_API_KEY) {
     try {
       const text = await runWithRetry(() => callGemini(jsonPrompt, jsonSystem), 'Gemini');
@@ -272,7 +319,7 @@ export async function runAiJson(req: any, fallback: any): Promise<AiResult<any>>
     }
   }
 
-  return { ok: false, model: 'fallback', data: fallback, error: { code: 'missing_key', message: 'Neither CEREBRAS_API_KEY nor GEMINI_API_KEY is configured on the server.' } };
+  return { ok: false, model: 'fallback', data: fallback, error: { code: 'missing_key', message: 'No AI provider (CEREBRAS_API_KEY, GROQ_API_KEY, GEMINI_API_KEY) is configured on the server.' } };
 }
 
 export async function runAiText(req: any): Promise<AiResult<{ answer: string }>> {
@@ -290,7 +337,18 @@ export async function runAiText(req: any): Promise<AiResult<{ answer: string }>>
     }
   }
 
-  // Fall back to Gemini
+  // Fall back to Groq (2nd tier)
+  if (process.env.GROQ_API_KEY) {
+    try {
+      const answer = await runWithRetry(() => callGroq(textPrompt, textSystem), 'Groq');
+      return { ok: true, model: getGroqModel(), data: { answer } };
+    } catch (error) {
+      const groqError = normalizeError(error, 'Groq');
+      console.log(`Groq text failed completely (${groqError.code}), trying Gemini...`);
+    }
+  }
+
+  // Last resort: Gemini
   if (process.env.GEMINI_API_KEY) {
     try {
       const answer = await runWithRetry(() => callGemini(textPrompt, textSystem), 'Gemini');
@@ -301,6 +359,6 @@ export async function runAiText(req: any): Promise<AiResult<{ answer: string }>>
     }
   }
 
-  return { ok: false, model: 'fallback', data: { answer: localAnswer(req) }, error: { code: 'missing_key', message: 'Neither CEREBRAS_API_KEY nor GEMINI_API_KEY is configured on the server.' } };
+  return { ok: false, model: 'fallback', data: { answer: localAnswer(req) }, error: { code: 'missing_key', message: 'No AI provider (CEREBRAS_API_KEY, GROQ_API_KEY, GEMINI_API_KEY) is configured on the server.' } };
 }
 
