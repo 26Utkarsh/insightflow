@@ -1,130 +1,142 @@
-# InsightFlow
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=4F46E5&height=220&section=header&text=InsightFlow&fontSize=65&fontColor=ffffff&fontAlignY=40" width="100%" alt="InsightFlow Header" />
+</p>
 
-InsightFlow is a premium AI-powered business intelligence workspace for dataset upload, profiling, interactive dashboards, AI-assisted analysis, and executive-grade exports.
+<p align="center">
+  <b>A premium AI-powered business intelligence workspace for instant dataset profiling, audit compliance, and interactive visual reporting.</b>
+</p>
 
-## ✨ Features
+<p align="center">
+  <a href="https://github.com/26Utkarsh/insightflow/stargazers">
+    <img src="https://img.shields.io/github/stars/26Utkarsh/insightflow?style=for-the-badge&color=4F46E5&logo=github" alt="GitHub Stars" />
+  </a>
+  <a href="https://github.com/26Utkarsh/insightflow/network/members">
+    <img src="https://img.shields.io/github/forks/26Utkarsh/insightflow?style=for-the-badge&color=4F46E5&logo=git" alt="GitHub Forks" />
+  </a>
+  <a href="https://github.com/26Utkarsh/insightflow/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/26Utkarsh/insightflow?style=for-the-badge&color=4F46E5" alt="License" />
+  </a>
+</p>
 
-- **AI-Powered Analytics**: Advanced AI analysis with automatic fallback to Cerebras when Gemini reaches quota limits
-- **Interactive Dashboards**: Real-time data visualization with Recharts
-- **Premium Export Options**: PDF, DOCX, Excel, CSV, JSON, PNG, and print-ready formats
-- **Data Profiling**: Automatic dataset quality assessment and cleaning
-- **Risk Analysis**: Built-in audit observations and risk scoring
-- **Executive Reports**: AI-generated summaries and actionable recommendations
-- **Local Persistence**: IndexedDB-backed storage for datasets and history
-- **Multi-Domain Support**: Business Intelligence, Internal Audit, Financial Analysis, Sales Analytics, Operations Analytics
+---
 
-## 🛠 Tech Stack
+## 📸 Product Interface Grid
 
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS v4
-- **State Management**: Zustand with IndexedDB persistence
-- **Charts**: Recharts for interactive data visualization
-- **Animations**: Framer Motion for smooth transitions
-- **Backend**: Express.js API layer
-- **AI Integration**: 
-  - Primary: Google Gemini (gemini-3.5-flash)
-  - Fallback: Cerebras (llama-3.3-70b) with automatic failover
-- **Export Libraries**: jsPDF, docx, exceljs, html2canvas
-- **Icons**: Lucide React
+<div align="center">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="33%" align="center" valign="top">
+        <h3>📥 1. Ingestion</h3>
+        <p>Drag-and-drop CSV, Excel, or JSON. InsightFlow automatically runs schema profiling, handles missing values, removes duplicates, and standardizes formats instantly.</p>
+      </td>
+      <td width="33%" align="center" valign="top">
+        <h3>📊 2. Canvas Panel</h3>
+        <p>Explore your business data in an interactive dashboard featuring dynamic charts, customizable dimensions, and real-time filtering powered by Recharts.</p>
+      </td>
+      <td width="33%" align="center" valign="top">
+        <h3>🤖 3. AI Copilot</h3>
+        <p>Gain deep context observations. Backed by a dual-engine LLM structure (Gemini + Cerebras fallback) for uninterrupted synthesis, audit reports, and summaries.</p>
+      </td>
+    </tr>
+  </table>
+</div>
 
-## 🚀 Local Setup
+---
+
+## 🛠️ Tech Stack & Integration
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=react,ts,nodejs,express,tailwind,vite,figma,git" alt="InsightFlow Tech Stack" />
+  </a>
+</p>
+
+* **Core Core**: React 18, TypeScript, Vite, Tailwind CSS v4
+* **State Management**: Zustand with local IndexedDB persistence
+* **Visualizations**: Responsive Recharts graphs
+* **Inference Engines**: Google Gemini (Primary) & Cerebras Llama 3.3 (Fallback)
+* **Export Suites**: ExcelJS, PDF (jsPDF), DOCX export, and HTML2Canvas
+
+---
+
+## ⚡ Visual Highlights & Features
+
+| Feature | Description |
+| :--- | :--- |
+| ⚡ **Dual AI Engine** | Primary inference via Gemini with automatic failover to Cerebras Llama 3.3 for high availability. |
+| 🧹 **Auto Data Cleaning** | Detects and resolves missing records, anomalous numbers, and duplicate stamps during ingestion. |
+| 🎨 **Bespoke UI** | Premium light-first styling default, ambient botanical line-art viewport backgrounds, Satoshi typography, and fluid transitions. |
+| 📁 **Local-First Storage** | Fully persisted client history and active catalogs using IndexedDB for maximum speed and security. |
+| 📈 **Rich Visual Charts** | Interactive metrics rendering using responsive Recharts, grouped by custom dimensions. |
+| 🖨️ **Print-Ready Briefs** | Export professional PDFs, Excel sheets, and print layouts with one-click operations. |
+
+<br/>
+
+<details>
+<summary><b>🛠️ System Architecture & Data Flow (Click to Expand)</b></summary>
+
+```mermaid
+graph TD
+    A[Dataset File: CSV/XLSX/JSON] -->|Upload / Drag & Drop| B(Ingestion Engine)
+    B -->|Auto Profile & Clean| C[(IndexedDB Cache)]
+    B -->|Schema Mapping| D[React UI Canvas]
+    D -->|Query/Copilot Prompt| E(API Express Server)
+    E -->|1. Primary Inference| F[Gemini API]
+    E -->|2. Failover Fallback| G[Cerebras Llama 3.3]
+    F -.->|Quota Exceeded| G
+    E -->|Structured Observations| D
+    D -->|Export Briefing Decks| H[PDF / DOCX / Excel Engine]
+```
+</details>
+
+---
+
+## 🚀 Getting Started
+
+### 📦 Local Installation
 
 ```bash
-# Install dependencies
+# Clone the repository
+git clone https://github.com/26Utkarsh/insightflow.git
+cd insightflow
+
+# Install node dependencies
 npm install
 
-# Start development server
+# Start local server and frontend watch
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open `http://localhost:3000` to start exploring.
 
-## ⚙️ Environment Variables
+### ⚙️ Environment Configuration
 
-Create a local `.env` file:
+Create a local `.env` file at the root level:
 
 ```bash
 # Primary AI API (Required)
 GEMINI_API_KEY=your_gemini_api_key_here
 GEMINI_MODEL=gemini-3.5-flash
 
-# Fallback AI API (Optional but recommended)
-# Cerebras provides 1M tokens/day free tier
+# Fallback AI API (Optional)
 CEREBRAS_API_KEY=your_cerebras_api_key_here
 CEREBRAS_MODEL=llama-3.3-70b
 ```
 
-**Important**: API keys are used only by the server. Never expose them in frontend code or commit them to version control.
+---
 
-## 🏗️ Build & Production
+## 📊 Developer Profile
 
-```bash
-# Build for production
-npm run build
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=26Utkarsh&show_icons=true&theme=aurora&hide_border=true" alt="GitHub Stats" />
+</div>
 
-# Start production server
-npm start
-```
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=slice&color=4F46E5&height=100&section=footer" width="100%" alt="Footer Divider" />
+</p>
 
-## 🌐 Render Deployment
-
-**Build Command**: `npm ci && npm run build`
-
-**Start Command**: `npm start`
-
-**Environment Variables**:
-- `GEMINI_API_KEY` (Required)
-- `GEMINI_MODEL` (Optional, defaults to gemini-3.5-flash)
-- `CEREBRAS_API_KEY` (Optional, recommended for fallback)
-- `CEREBRAS_MODEL` (Optional, defaults to llama-3.3-70b)
-- `PORT` (Optional, defaults to 3000)
-
-## 📦 GitHub & Version Control
-
-Use GitHub as the source repository for deployment. **Do not commit**:
-- `.env` files (use `.env.example` as template)
-- `node_modules/`
-- `dist/`
-- Local datasets or generated files
-- Logs
-
-**Fresh Clone Verification**:
-```bash
-git clone <your-repo-url>
-cd insightflow
-npm ci
-npm run build
-npm start
-```
-
-## 🔒 Security
-
-- API keys are server-side only and never exposed to the client
-- Uploaded datasets are stored locally in the browser via IndexedDB
-- No data is sent to external servers except for AI API calls
-- Automatic fallback mechanism ensures service continuity
-
-## 📊 Export Features
-
-InsightFlow supports multiple export formats:
-
-- **PDF**: Executive reports with charts and analysis
-- **DOCX**: Word documents with formatted content
-- **Excel**: Spreadsheets with styled headers and metadata
-- **CSV**: Raw data export with UTF-8 encoding
-- **JSON**: Structured data export
-- **PNG**: High-resolution screenshots
-- **Print**: Print-optimized layouts
-
-## 🤖 AI Fallback Strategy
-
-The application automatically falls back to Cerebras when Gemini reaches quota limits or rate limits:
-
-1. **Primary**: Google Gemini API
-2. **Fallback**: Cerebras API (1M tokens/day free tier)
-3. **Last Resort**: Local deterministic insights
-
-This ensures continuous service even when one provider is unavailable.
-
-## 📝 License
-
-This project is proprietary software. All rights reserved.
+<p align="center">
+  <a href="https://github.com/26Utkarsh/insightflow">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+</p>
