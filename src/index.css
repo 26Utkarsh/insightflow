@@ -4,7 +4,7 @@
 @theme {
   --font-sans: "Satoshi", "Inter Tight", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Fraunces", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --color-bg-primary: var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
@@ -96,7 +96,13 @@
   --chart-7: #14B8A6;
 }
 
-html { min-height: 100%; background: var(--bg-primary); }
+html {
+  min-height: 100%;
+  background: var(--bg-primary);
+  /* Prevent mobile browsers from auto-scaling text (causes blur on some devices) */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
   min-height: 100%;
@@ -106,13 +112,20 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-weight: 500;
+  /* Sub-pixel font rendering — critical for crisp text on all screens */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  /* Prevent browser from synthesizing bold/italic (produces blurry fake-bold) */
+  font-synthesis: none;
 }
 
 @layer base {
-  h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans); line-height: 1.2; letter-spacing: -0.015em; font-weight: 700; }
+  /* DO NOT set font-family on headings here — let font-display / font-serif-display Tailwind
+     classes win. Setting font-family here would override those utility classes due to
+     @layer base having lower specificity but applying globally, causing headings to
+     receive Satoshi instead of Fraunces where font-display is used. */
+  h1, h2, h3, h4, h5, h6 { line-height: 1.2; letter-spacing: -0.015em; font-weight: 700; }
   p { line-height: 1.6; font-size: 0.9375rem; font-weight: 500; }
   button, a, select, input, textarea {
     font-weight: 600;
@@ -242,10 +255,10 @@ body {
 .evidence-rail > *::before { content: ""; position: absolute; left: -1.9rem; top: 1.15rem; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--bg-surface); border: 2px solid var(--accent-secondary); z-index: 10; }
 
 .text-gradient {
-  background: linear-gradient(165deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  /* Use solid near-black instead of background-clip:text — background-clip
+     disables sub-pixel rendering and causes fuzzy/low-res text on many
+     browsers and high-DPI screens. */
+  color: var(--text-primary);
 }
 .bevel-border {
   border: 1px solid var(--border-primary);
