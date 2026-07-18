@@ -229,11 +229,11 @@ export default function History() {
             <div className="relative flex-1 min-w-[200px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" size={13} />
               <input type="text" placeholder="Search catalogs by name..." value={search} onChange={e => setSearch(e.target.value)}
-                className="w-full pl-8 pr-3 py-2 bg-bg-secondary/20 border border-border-primary rounded-lg text-xs text-text-primary focus:border-accent-secondary outline-none transition-all field-control !min-h-0 !py-2" />
+                className="w-full !pl-9 pr-3 py-2 bg-bg-secondary/20 border border-border-primary rounded-lg text-xs text-text-primary focus:border-accent-secondary outline-none transition-all field-control !min-h-0 !py-2" />
             </div>
             <div className="relative shrink-0">
               <select value={sortBy} onChange={e => setSortBy(e.target.value as SortOption)}
-                className="appearance-none pl-3 pr-8 py-2 bg-bg-secondary/20 border border-border-primary rounded-lg text-xs text-text-primary focus:border-accent-secondary outline-none transition-all field-control !min-h-0 !py-2 cursor-pointer font-medium">
+                className="appearance-none !pl-3.5 !pr-9 py-2 bg-bg-secondary/20 border border-border-primary rounded-lg text-xs text-text-primary focus:border-accent-secondary outline-none transition-all field-control !min-h-0 !py-2 cursor-pointer font-medium">
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
                 <option value="name">Name</option>

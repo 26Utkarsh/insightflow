@@ -85,17 +85,17 @@ export default function Layout() {
     <div className="flex h-screen w-full bg-bg-primary text-text-primary overflow-hidden">
       {/* Sidebar for Desktop */}
       <aside 
-        className={`hidden md:flex flex-col h-full bg-bg-secondary border-r border-border-primary/60 transition-all duration-300 relative z-40
+        className={`hidden md:flex flex-col h-full bg-gradient-to-b from-bg-secondary/95 to-bg-primary/95 border-r border-border-primary/50 transition-all duration-300 relative z-40
           ${sidebarCollapsed ? 'w-16' : 'w-64'}`}
       >
         {/* Brand Header */}
         <div className="h-14 flex items-center px-4 justify-between border-b border-border-primary/50">
           <Link to="/" className="flex items-center gap-2.5 group overflow-hidden pl-1">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-accent-primary to-accent-secondary flex items-center justify-center shrink-0 shadow-md shadow-accent-primary/10 transition-all duration-300 group-hover:scale-105 text-white">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-b from-bg-surface to-bg-secondary border border-border-primary/60 flex items-center justify-center shrink-0 shadow-[0_1.5px_4px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300 group-hover:scale-105 text-accent-primary">
               <LogoIcon className="w-4.5 h-4.5" />
             </div>
             {!sidebarCollapsed && (
-              <span className="font-extrabold text-sm uppercase tracking-[0.18em] font-display text-text-primary">
+              <span className="font-extrabold text-xs uppercase tracking-[0.2em] font-display text-text-primary">
                 InsightFlow
               </span>
             )}
@@ -106,22 +106,22 @@ export default function Layout() {
         <div className="p-3 border-b border-border-primary/50 relative">
           <button
             onClick={() => !sidebarCollapsed && setWorkspaceDropdownOpen(!workspaceDropdownOpen)}
-            className={`w-full flex items-center justify-between p-2.5 rounded-xl bg-bg-surface border border-border-primary/80 transition-all text-left bevel-border
-              ${sidebarCollapsed ? 'justify-center cursor-default' : 'hover:border-border-secondary'}`}
+            className={`w-full flex items-center justify-between p-2 py-1.5 rounded-xl bg-bg-surface/80 hover:bg-bg-surface border border-border-primary/45 transition-all text-left shadow-[0_2px_8px_rgba(0,0,0,0.02)]
+              ${sidebarCollapsed ? 'justify-center cursor-default' : 'hover:border-border-primary/80 hover:shadow-md'}`}
           >
             <div className="flex items-center gap-2.5 min-w-0">
               <Database size={14} className="text-accent-secondary shrink-0" />
               {!sidebarCollapsed && (
                 <div className="min-w-0">
-                  <div className="text-[10px] uppercase font-bold tracking-wider text-text-muted">Active Catalog</div>
-                  <div className="text-sm font-semibold text-text-primary truncate">
+                  <div className="text-[9px] uppercase font-bold tracking-wider text-text-muted">Active Catalog</div>
+                  <div className="text-xs font-semibold text-text-primary truncate">
                     {activeDataset ? activeDataset.name : 'No dataset active'}
                   </div>
                 </div>
               )}
             </div>
             {!sidebarCollapsed && (
-              <ChevronDown size={13} className={`text-text-muted transition-transform ${workspaceDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={13} className={`text-text-muted/50 transition-transform duration-200 ${workspaceDropdownOpen ? 'rotate-180 text-text-secondary' : ''}`} />
             )}
           </button>
 
@@ -165,39 +165,43 @@ export default function Layout() {
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 px-2.5 py-4 space-y-1 overflow-y-auto custom-scrollbar">
+        <nav className="flex-1 px-2.5 py-4 space-y-2 overflow-y-auto custom-scrollbar">
           {navLinks.map(link => {
             const isActive = location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(link.path));
             const isDisabled = link.requiresDataset && !activeDataset;
             
             return (
-              <Link
-                key={link.path}
-                to={isDisabled ? '#' : link.path}
-                onClick={e => isDisabled && e.preventDefault()}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all relative group
-                  ${isActive ? 'text-text-primary bg-bg-surface/60 border border-border-primary/80 font-semibold' : 'text-text-secondary hover:text-text-primary hover:bg-bg-surface/30'}
-                  ${isDisabled ? 'opacity-40 cursor-not-allowed hover:bg-transparent hover:text-text-secondary' : ''}`}
-                title={sidebarCollapsed ? link.name : ''}
-              >
-                <span className={`shrink-0 ${isActive ? 'text-accent-primary' : 'text-text-muted group-hover:text-text-secondary'}`}>
-                  {link.icon}
-                </span>
-                {!sidebarCollapsed && <span>{link.name}</span>}
-                {isActive && !sidebarCollapsed && (
-                  <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute left-0 top-2 bottom-2 w-0.5 rounded-r bg-accent-secondary"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
+              <React.Fragment key={link.path}>
+                {link.name === 'Settings' && (
+                  <div className="my-3 border-t border-border-primary/30 mx-2" />
                 )}
-              </Link>
+                <Link
+                  to={isDisabled ? '#' : link.path}
+                  onClick={e => isDisabled && e.preventDefault()}
+                  className={`flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-semibold tracking-tight transition-all duration-200 relative group
+                    ${isActive ? 'text-text-primary font-semibold' : 'text-text-muted hover:text-text-primary hover:bg-bg-surface/40'}
+                    ${isDisabled ? 'opacity-35 cursor-not-allowed hover:bg-transparent hover:text-text-muted' : ''}`}
+                  title={sidebarCollapsed ? link.name : ''}
+                >
+                  <span className={`shrink-0 relative z-10 transition-colors duration-150 ${isActive ? 'text-text-primary' : 'text-text-muted/70 group-hover:text-text-secondary'}`}>
+                    {link.icon}
+                  </span>
+                  {!sidebarCollapsed && <span className="relative z-10 transition-colors duration-150">{link.name}</span>}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activePill"
+                      className="absolute inset-0 bg-accent-primary/[0.06] border border-accent-primary/10 rounded-xl z-0"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              </React.Fragment>
             );
           })}
         </nav>
 
         {/* Footer Area */}
-        <div className="p-3.5 border-t border-border-primary/40">
+        <div className="p-3 border-t border-border-primary/40">
           <div className={`flex items-center bg-bg-surface/50 border border-border-primary/65 rounded-xl p-1 shadow-sm transition-all duration-300
             ${sidebarCollapsed ? 'flex-col gap-1.5' : 'flex-row justify-between w-full'}`}>
             <ThemeToggle />
@@ -212,9 +216,11 @@ export default function Layout() {
         </div>
       </aside>
 
-      {/* Mobile Header Bar */}
-      <div className="md:hidden flex flex-col w-full h-full">
-        <header className="h-14 w-full bg-bg-secondary border-b border-border-primary px-4 flex items-center justify-between shrink-0">
+      {/* Main Content Wrapper (covers both desktop and mobile, single outlet) */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+        
+        {/* Mobile Header Bar */}
+        <header className="md:hidden h-14 w-full bg-bg-secondary border-b border-border-primary px-4 flex items-center justify-between shrink-0">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-7.5 h-7.5 rounded-lg bg-gradient-to-tr from-accent-primary to-accent-secondary flex items-center justify-center shrink-0 shadow-sm text-white">
               <LogoIcon className="w-4 h-4" />
@@ -247,7 +253,7 @@ export default function Layout() {
                 initial={{ x: '-100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
-                transition={{ type: 'tween', duration: 0.25 }}
+                transition={{ type: 'tween', duration: 0.2 }}
                 className="fixed top-0 bottom-0 left-0 w-72 bg-bg-secondary border-r border-border-primary z-50 p-4 flex flex-col md:hidden"
               >
                 <div className="flex items-center justify-between pb-6 border-b border-border-primary/50">
@@ -311,11 +317,6 @@ export default function Layout() {
         <main className="flex-1 overflow-hidden relative">
           <Outlet />
         </main>
-      </div>
-
-      {/* Main Content Area (Desktop Sidebar sibling) */}
-      <div className="hidden md:flex flex-1 h-full overflow-hidden relative">
-        <Outlet />
       </div>
     </div>
   );

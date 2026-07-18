@@ -156,27 +156,45 @@ export default function Home() {
       <div className="product-backdrop" aria-hidden="true" />
 
       {/* STEP HEADER */}
-      <div className="max-w-5xl mx-auto w-full relative z-10 mb-12 flex justify-between items-center">
-        <div className="flex items-center gap-6">
+      <div className="max-w-5xl mx-auto w-full relative z-10 mb-10 flex justify-between items-center">
+        <div className="flex items-center gap-4">
+          {/* Step 1 */}
           <div className="flex items-center gap-2">
-            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${step === 'upload' ? 'bg-accent-primary text-text-inverse' : 'bg-success/20 text-success'}`}>
-              {step === 'upload' ? '1' : <Check size={12} />}
+            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300
+              ${step === 'upload' 
+                ? 'bg-bg-surface text-accent-primary border-2 border-accent-primary shadow-[0_0_12px_rgba(99,102,241,0.25)] ring-2 ring-accent-primary/10' 
+                : 'bg-success/10 text-success border border-success/20 font-semibold'}`}>
+              {step === 'upload' ? '1' : <Check size={11} className="stroke-[2.5]" />}
             </span>
-            <span className={`text-xs font-medium ${step === 'upload' ? 'text-text-primary' : 'text-text-secondary'}`}>Upload</span>
+            <span className={`text-[11px] uppercase tracking-wider font-bold transition-colors duration-300 ${step === 'upload' ? 'text-text-primary' : 'text-text-muted'}`}>Upload</span>
           </div>
-          <div className="h-px w-8 bg-border-primary" />
+          
+          <div className="h-[2px] w-8 bg-border-primary/80" />
+          
+          {/* Step 2 */}
           <div className="flex items-center gap-2">
-            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${step === 'select-sheet' ? 'bg-accent-primary text-text-inverse' : step === 'summary' ? 'bg-success/20 text-success' : 'bg-bg-elevated text-text-muted border border-border-primary'}`}>
-              {step === 'select-sheet' ? '2' : step === 'summary' ? <Check size={12} /> : '2'}
+            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300
+              ${step === 'select-sheet' 
+                ? 'bg-bg-surface text-accent-primary border-2 border-accent-primary shadow-[0_0_12px_rgba(99,102,241,0.25)] ring-2 ring-accent-primary/10' 
+                : step === 'summary' 
+                  ? 'bg-success/10 text-success border border-success/20 font-semibold' 
+                  : 'bg-transparent text-text-muted/50 border border-border-primary/70'}`}>
+              {step === 'select-sheet' ? '2' : step === 'summary' ? <Check size={11} className="stroke-[2.5]" /> : '2'}
             </span>
-            <span className={`text-xs font-medium ${step === 'select-sheet' ? 'text-text-primary' : 'text-text-muted'}`}>Structure</span>
+            <span className={`text-[11px] uppercase tracking-wider font-bold transition-colors duration-300 ${step === 'select-sheet' ? 'text-text-primary' : 'text-text-muted'}`}>Structure</span>
           </div>
-          <div className="h-px w-8 bg-border-primary" />
+          
+          <div className="h-[2px] w-8 bg-border-primary/80" />
+          
+          {/* Step 3 */}
           <div className="flex items-center gap-2">
-            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${step === 'summary' ? 'bg-accent-primary text-text-inverse' : 'bg-bg-elevated text-text-muted border border-border-primary'}`}>
+            <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all duration-300
+              ${step === 'summary' 
+                ? 'bg-bg-surface text-accent-primary border-2 border-accent-primary shadow-[0_0_12px_rgba(99,102,241,0.25)] ring-2 ring-accent-primary/10' 
+                : 'bg-transparent text-text-muted/50 border border-border-primary/70'}`}>
               3
             </span>
-            <span className={`text-xs font-medium ${step === 'summary' ? 'text-text-primary' : 'text-text-muted'}`}>Executive Summary</span>
+            <span className={`text-[11px] uppercase tracking-wider font-bold transition-colors duration-300 ${step === 'summary' ? 'text-text-primary' : 'text-text-muted'}`}>Summary</span>
           </div>
         </div>
       </div>
@@ -189,16 +207,20 @@ export default function Home() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            className="max-w-5xl mx-auto w-full relative z-10 grid lg:grid-cols-[1fr_380px] gap-10 flex-1"
+            transition={{ duration: 0.15, ease: 'easeOut' }}
+            className="max-w-5xl mx-auto w-full relative z-10 grid lg:grid-cols-[1fr_400px] gap-12 flex-1 items-stretch"
           >
             {/* Left Column: Dropzone + Explainer */}
-            <div className="flex flex-col justify-center">
-              <span className="editorial-label mb-2 block tracking-[0.2em] text-accent-secondary">InsightFlow Briefing Ingest</span>
-              <h1 className="text-4xl md:text-5xl font-black font-display leading-tight text-text-primary mb-5 tracking-tight">
-                Upload business data.<br />Review insights instantly.
+            <div className="flex flex-col justify-center py-4">
+              <span className="text-[10px] uppercase tracking-[0.28em] font-semibold text-text-muted/70 mb-5 block">
+                InsightFlow Ingest Terminal
+              </span>
+              <h1 className="text-4xl md:text-[46px] font-medium font-serif-display leading-[1.1] text-text-primary mb-6 tracking-[-0.025em]">
+                Upload business data. <br />
+                Review insights <span className="text-accent-secondary italic underline decoration-accent-secondary/35 decoration-2 underline-offset-6">instantly</span>.
               </h1>
-              <p className="text-base text-text-secondary max-w-xl leading-relaxed mb-8">
-                InsightFlow analyzes records automatically, generating data profiling health sheets, risk audits, and interactive dashboards in seconds.
+              <p className="text-sm text-text-secondary max-w-lg leading-relaxed mb-8">
+                InsightFlow automatically profiles, cleans, and structures your records, generating audit ready compliance ledgers and interactive dashboards in seconds.
               </p>
 
               {/* Handcrafted dropzone */}
@@ -210,13 +232,13 @@ export default function Home() {
                       transition={{ repeat: Infinity, duration: 1.2, ease: 'linear' }} 
                       className="w-10 h-10 rounded-full border-2 border-accent-primary border-t-transparent mb-4" 
                     />
-                    <p className="text-sm font-semibold text-text-primary animate-pulse">{loadingText || 'Processing...'}</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-text-primary animate-pulse">{loadingText || 'Processing...'}</p>
                   </div>
                 )}
 
                 <div
-                  className={`surface-panel rounded-2xl flex flex-col items-center justify-center p-14 text-center transition-all cursor-pointer bg-bg-secondary/20 bevel-border glow-card relative overflow-hidden
-                    ${dragActive ? 'border-accent-primary scale-[1.01] bg-accent-primary/[0.02]' : 'border-border-primary hover:border-border-secondary'}
+                  className={`surface-panel rounded-2xl flex flex-col items-center justify-center p-12 text-center transition-all duration-300 cursor-pointer bg-gradient-to-br from-bg-surface to-bg-secondary/40 hover:to-bg-surface border-2 border-dashed bevel-border glow-card relative overflow-hidden group shadow-[inset_0_2px_8px_rgba(0,0,0,0.015)]
+                    ${dragActive ? 'border-accent-secondary scale-[1.01] bg-accent-primary/[0.02] shadow-lg' : 'border-border-primary/80 hover:border-accent-secondary/50 hover:shadow-xl hover:shadow-accent-primary/5'}
                     ${isProcessing ? 'pointer-events-none opacity-50' : ''}`}
                   onClick={() => fileInputRef.current?.click()}
                   onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}
@@ -224,37 +246,39 @@ export default function Home() {
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') fileInputRef.current?.click(); }}
                 >
                   {/* Subtle top indicator bar */}
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent-primary/30 to-transparent" />
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                  <div className="w-12 h-12 rounded-xl bg-bg-elevated border border-border-primary flex items-center justify-center mb-5 text-text-muted hover:text-accent-secondary transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                    <UploadCloud size={22} />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-b from-bg-surface to-bg-secondary border border-border-primary/80 flex items-center justify-center mb-5 text-text-muted/80 group-hover:text-accent-secondary transition-all duration-300 shadow-[0_2.5px_8px_rgba(0,0,0,0.03),inset_0_1px_0_rgba(255,255,255,0.05)] group-hover:scale-105 group-hover:shadow-[0_4px_12px_rgba(79,70,229,0.12)]">
+                    <UploadCloud size={18} className="transition-transform duration-300" />
                   </div>
-                  <h4 className="text-base font-bold text-text-primary mb-2">
-                    {dragActive ? 'Drop the file now' : 'Drag & drop your file or click to browse'}
+                  <h4 className="text-sm font-extrabold text-text-primary mb-2 tracking-tight group-hover:text-accent-secondary transition-colors duration-200">
+                    {dragActive ? 'Drop files here' : 'Drag & drop your file or click to browse'}
                   </h4>
-                  <p className="text-sm text-text-muted mb-6">Supports CSV, XLSX, JSON, PDF — up to 100MB</p>
+                  <p className="text-xs text-text-muted mb-6">Supports CSV, XLSX, JSON, PDF &mdash; up to 100MB</p>
                   
-                  <div className="flex gap-2.5 mb-6">
+                  <div className="flex gap-2 mb-6">
                     {['CSV', 'XLSX', 'JSON', 'PDF'].map(f => (
-                      <span key={f} className="px-3 py-1.5 bg-bg-elevated border border-border-primary rounded-md text-xs font-bold text-text-muted uppercase tracking-wider">{f}</span>
+                      <span key={f} className="px-2.5 py-1 bg-bg-surface border border-border-primary/95 rounded-md text-[9px] font-bold text-text-secondary uppercase tracking-widest shadow-[0_1px_2px_rgba(0,0,0,0.015)]">{f}</span>
                     ))}
                   </div>
                   <input type="file" accept=".csv,.xlsx,.json,.pdf" onChange={handleFileUpload} ref={fileInputRef} className="hidden" />
-                  <button className="primary-action text-sm font-semibold px-8 py-3 rounded-lg">Select File</button>
+                  <button className="primary-action text-xs font-semibold px-6 py-2.5 rounded-lg shadow-sm hover:shadow transition-all duration-300 cursor-pointer">
+                    Select File
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Right Column: Profile Selector */}
             <div className="flex flex-col justify-center">
-              <div className="surface-panel p-8 rounded-2xl relative overflow-hidden bevel-border">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent-primary/5 rounded-full blur-3xl pointer-events-none" />
-                <span className="editorial-label mb-3 block tracking-[0.2em] text-text-muted">Analysis Focus</span>
-                <p className="text-sm text-text-secondary mb-6 leading-relaxed">
+              <div className="surface-panel p-6.5 rounded-2xl relative overflow-hidden bevel-border bg-bg-surface/30 backdrop-blur-sm">
+                <div className="absolute top-0 right-0 w-36 h-36 bg-accent-primary/5 rounded-full blur-3xl pointer-events-none" />
+                <span className="editorial-label mb-2 block tracking-[0.22em] text-accent-secondary font-bold text-[10px]">Analysis Focus</span>
+                <p className="text-xs text-text-muted mb-6 leading-relaxed">
                   Choose a target domain framework. InsightFlow will adjust its metric checks and AI observations to align with your choice.
                 </p>
 
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   {PROFILES.map(p => {
                     const active = selectedProfile === p.id;
                     return (
@@ -262,20 +286,24 @@ export default function Home() {
                         key={p.id}
                         onClick={() => { setSelectedProfile(p.id); updateSettings({ defaultProfile: p.id }); }}
                         aria-pressed={active}
-                        className={`w-full flex items-start gap-3 p-3.5 rounded-xl text-left transition-all border cursor-pointer
+                        className={`w-full flex items-start gap-3.5 p-3 rounded-xl text-left transition-all border duration-200 cursor-pointer group/item
                           ${active 
-                            ? 'bg-bg-elevated border-accent-primary/45 shadow-md shadow-accent-primary/5' 
-                            : 'bg-transparent border-transparent hover:bg-bg-secondary/40 hover:border-border-primary/50'}`}
+                            ? 'bg-bg-surface border-accent-secondary/40 shadow-[0_4px_20px_rgba(79,70,229,0.08),0_0_0_1px_rgba(79,70,229,0.1)]' 
+                            : 'bg-transparent border-transparent hover:bg-bg-surface hover:border-border-primary/80'}`}
                       >
-                        <span className={`shrink-0 p-2 rounded-lg bg-bg-secondary border border-border-primary/80 mt-0.5 transition-colors
-                          ${active ? 'text-accent-primary border-accent-primary/25 bg-accent-primary/5' : 'text-text-muted'}`}>
+                        <span className={`shrink-0 p-1.5 rounded-lg bg-gradient-to-b from-bg-surface to-bg-secondary border border-border-primary/75 mt-0.5 transition-all duration-200 shadow-[0_1px_2.5px_rgba(0,0,0,0.02)]
+                          ${active ? 'text-accent-secondary border-accent-secondary/25 bg-gradient-to-b from-accent-secondary/15 to-accent-secondary/5 scale-105' : 'text-text-muted group-hover/item:text-text-primary'}`}>
                           {p.icon}
                         </span>
                         <div className="flex-1 min-w-0">
-                          <div className={`text-xs font-bold tracking-tight ${active ? 'text-text-primary' : 'text-text-secondary'}`}>{p.id}</div>
-                          <div className="text-[10px] text-text-muted mt-1 leading-normal font-medium">{p.desc}</div>
+                          <div className={`text-xs font-bold tracking-tight transition-colors duration-150 ${active ? 'text-text-primary' : 'text-text-secondary group-hover/item:text-text-primary'}`}>{p.id}</div>
+                          <div className="text-[10px] text-text-muted mt-1.5 leading-relaxed font-medium">{p.desc}</div>
                         </div>
-                        {active && <Check size={13} className="text-accent-secondary shrink-0 mt-1" />}
+                        {active && (
+                          <div className="w-4.5 h-4.5 rounded-full bg-accent-secondary text-white shadow-[0_1.5px_3.5px_rgba(79,70,229,0.3)] flex items-center justify-center shrink-0 mt-0.5">
+                            <Check size={10} className="stroke-[3]" />
+                          </div>
+                        )}
                       </button>
                     );
                   })}
@@ -292,6 +320,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
             className="max-w-xl mx-auto w-full relative z-10 flex items-center justify-center flex-1"
           >
             <div className="w-full command-panel p-6 bevel-border">
@@ -336,9 +365,10 @@ export default function Home() {
         {step === 'summary' && analysis && processedResult && (
           <motion.div
             key="summary-step"
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
             className="max-w-5xl mx-auto w-full relative z-10 flex flex-col flex-1"
           >
             {/* Header */}
