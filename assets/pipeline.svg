@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 340" width="1600" height="340" role="img" aria-label="InsightFlow pipeline: ingest, profile and clean, canvas, AI copilot with Gemini to Cerebras failover, export">
+<defs>
+<linearGradient id="nd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A1E4F"/><stop offset="1" stop-color="#11143A"/></linearGradient>
+<filter id="gl" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1600" height="340" rx="22" fill="#0A0C1E"/>
+<line x1="60" y1="150" x2="1540" y2="150" stroke="#2D3290" stroke-width="2" stroke-dasharray="6 8"><animate attributeName="stroke-dashoffset" values="0;-28" dur="1.6s" repeatCount="indefinite"/></line>
+<circle r="5.5" fill="#FBBF24" filter="url(#gl)"><animateMotion dur="10s" begin="-0.00s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-0.72s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-1.44s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="5.5" fill="#FBBF24" filter="url(#gl)"><animateMotion dur="10s" begin="-2.16s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-2.88s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-3.60s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="5.5" fill="#FBBF24" filter="url(#gl)"><animateMotion dur="10s" begin="-4.32s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-5.04s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-5.76s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="5.5" fill="#FBBF24" filter="url(#gl)"><animateMotion dur="10s" begin="-6.48s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-7.20s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-7.92s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="5.5" fill="#FBBF24" filter="url(#gl)"><animateMotion dur="10s" begin="-8.64s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<circle r="4" fill="#22D3EE" filter="url(#gl)"><animateMotion dur="10s" begin="-9.36s" repeatCount="indefinite" path="M60 150 L1540 150"/></circle>
+<path d="M371 142 L383 150 L371 158 Z" fill="#22D3EE"/>
+<path d="M676 142 L688 150 L676 158 Z" fill="#22D3EE"/>
+<path d="M981 142 L993 150 L981 158 Z" fill="#22D3EE"/>
+<path d="M1286 142 L1298 150 L1286 158 Z" fill="#22D3EE"/>
+<g><rect x="80" y="90" width="220" height="120" rx="18" fill="url(#nd)" stroke="#2D3290"><animate attributeName="stroke" values="#2D3290;#22D3EE;#2D3290" keyTimes="0;.5;1" dur="10s" begin="0.0s" repeatCount="indefinite"/></rect>
+<g transform="translate(102 108)" fill="none" stroke="#22D3EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 0 H14 L22 8 V28 H0 Z M14 0 V8 H22"/></g>
+<text x="278" y="126" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="13" font-weight="600" fill="#4A5090" text-anchor="end" >01</text>
+<text x="102" y="174" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#E6E8FF" text-anchor="start" >Ingest</text>
+<text x="102" y="196" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8A90B8" text-anchor="start" >CSV · XLSX · JSON</text>
+</g>
+<g><rect x="385" y="90" width="220" height="120" rx="18" fill="url(#nd)" stroke="#2D3290"><animate attributeName="stroke" values="#2D3290;#22D3EE;#2D3290" keyTimes="0;.5;1" dur="10s" begin="1.9s" repeatCount="indefinite"/></rect>
+<g transform="translate(407 108)" fill="none" stroke="#22D3EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 2 H26 L16 14 V26 L10 22 V14 Z"/></g>
+<text x="583" y="126" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="13" font-weight="600" fill="#4A5090" text-anchor="end" >02</text>
+<text x="407" y="174" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#E6E8FF" text-anchor="start" >Profile &amp; Clean</text>
+<text x="407" y="196" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8A90B8" text-anchor="start" >types · nulls · duplicates</text>
+</g>
+<g><rect x="690" y="90" width="220" height="120" rx="18" fill="url(#nd)" stroke="#2D3290"><animate attributeName="stroke" values="#2D3290;#22D3EE;#2D3290" keyTimes="0;.5;1" dur="10s" begin="3.8s" repeatCount="indefinite"/></rect>
+<g transform="translate(712 108)" fill="none" stroke="#22D3EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 26 V14 H6 V26 M10 26 V6 H16 V26 M20 26 V0 H26 V26"/></g>
+<text x="888" y="126" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="13" font-weight="600" fill="#4A5090" text-anchor="end" >03</text>
+<text x="712" y="174" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#E6E8FF" text-anchor="start" >Canvas</text>
+<text x="712" y="196" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8A90B8" text-anchor="start" >charts · KPIs · filters</text>
+</g>
+<g><rect x="995" y="90" width="220" height="120" rx="18" fill="url(#nd)" stroke="#2D3290"><animate attributeName="stroke" values="#2D3290;#22D3EE;#2D3290" keyTimes="0;.5;1" dur="10s" begin="5.7s" repeatCount="indefinite"/></rect>
+<g transform="translate(1017 108)" fill="none" stroke="#22D3EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 0 C14 8 18 12 26 13 C18 14 14 18 13 26 C12 18 8 14 0 13 C8 12 12 8 13 0 Z"/></g>
+<text x="1193" y="126" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="13" font-weight="600" fill="#4A5090" text-anchor="end" >04</text>
+<text x="1017" y="174" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#E6E8FF" text-anchor="start" >AI Copilot</text>
+<text x="1017" y="196" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8A90B8" text-anchor="start" >insights · audit reports</text>
+</g>
+<g><rect x="1300" y="90" width="220" height="120" rx="18" fill="url(#nd)" stroke="#2D3290"><animate attributeName="stroke" values="#2D3290;#22D3EE;#2D3290" keyTimes="0;.5;1" dur="10s" begin="7.6s" repeatCount="indefinite"/></rect>
+<g transform="translate(1322 108)" fill="none" stroke="#22D3EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 0 V18 M5 11 L13 19 L21 11 M0 27 H26"/></g>
+<text x="1498" y="126" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="13" font-weight="600" fill="#4A5090" text-anchor="end" >05</text>
+<text x="1322" y="174" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#E6E8FF" text-anchor="start" >Export</text>
+<text x="1322" y="196" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8A90B8" text-anchor="start" >PDF · DOCX · XLSX</text>
+</g>
+<line x1="1045" y1="210" x2="1045" y2="250" stroke="#2D3290" stroke-width="2"/><line x1="1165" y1="210" x2="1165" y2="250" stroke="#2D3290" stroke-width="2" stroke-dasharray="4 4"/>
+<rect x="991" y="248" width="108" height="44" rx="12" fill="none" stroke="#22D3EE" stroke-width="2" filter="url(#gl)"><animate attributeName="opacity" values="1;1;.15;.15;1" keyTimes="0;.55;.6;.9;1" dur="10s" repeatCount="indefinite"/></rect>
+<rect x="1111" y="248" width="108" height="44" rx="12" fill="none" stroke="#FBBF24" stroke-width="2" filter="url(#gl)"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.55;.6;.9;1" dur="10s" repeatCount="indefinite"/></rect>
+<rect x="993" y="252" width="104" height="36" rx="10" fill="#141845" stroke="#2D3290"/>
+<text x="1045" y="275" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#E6E8FF" text-anchor="middle" >Gemini</text>
+<text x="1045" y="246" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="9" font-weight="600" fill="#22D3EE" text-anchor="middle" letter-spacing="2">PRIMARY</text>
+<rect x="1113" y="252" width="104" height="36" rx="10" fill="#141845" stroke="#2D3290"/>
+<text x="1165" y="275" font-family="Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#E6E8FF" text-anchor="middle" >Cerebras</text>
+<text x="1165" y="246" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="9" font-weight="600" fill="#FBBF24" text-anchor="middle" letter-spacing="2">FALLBACK</text>
+<path d="M1099 270 C1103 262 1107 262 1111 270" fill="none" stroke="#FBBF24" stroke-width="1.6" stroke-dasharray="3 3"/>
+<text x="1105" y="318" font-family="'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace" font-size="12" font-weight="400" fill="#8A90B8" text-anchor="middle" >quota exceeded → automatic failover</text>
+</svg>
